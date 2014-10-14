@@ -10,5 +10,5 @@ setup:
 	sudo apt-get -y install python-coverage
 
 unittest:
-	nosetests --with-doctest --doctest-tests --with-xunit --with-coverage --nocapture --cover-tests -w data/flight_mapping --cover-package mapping
+	nosetests --with-doctest --doctest-tests --with-xunit --with-coverage --nocapture
 	python -m coverage xml
