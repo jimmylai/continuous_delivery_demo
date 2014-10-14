@@ -10,5 +10,6 @@ setup:
 	sudo apt-get -y install python-coverage
 
 unittest:
-	nosetests --with-doctest --doctest-tests --with-xunit --with-coverage --nocapture
+	export DJANGO_SETTINGS_MODULE=web.settings
+	nosetests --with-doctest --doctest-tests --with-xunit --with-coverage --nocapture -w web  --cover-package calculator
 	python -m coverage xml
