@@ -9,6 +9,9 @@ setup:
 	sudo apt-get -y install python-markdown
 	sudo apt-get -y install python-coverage
 	sudo apt-get -y install apache2
+	sudo apt-get -y install libapache2-mod-wsgi
+	sudo a2enmod wsgi
+	sudo /etc/init.d/apache2 restart
 
 setup_jenkins:
 	wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
@@ -25,7 +28,15 @@ unittest: clean
 	python -m coverage xml
 
 functest:
-	cd web; python manage.py runserver 0.0.0.0:8888 &
-	sleep 3
+	#cd web; python manage.py runserver 0.0.0.0:8888 &
+	#sleep 3
 	nosetests --with-doctest --doctest-tests --with-xunit --nocapture -w functional_tests
-	ps aux | grep -ie "0.0.0.0:8888"  | awk '{print $$2}' | xargs kill -9
+	#ps aux | grep -ie "0.0.0.0:8888"  | awk '{print $$2}' | xargs kill -9
+
+deploy:
+	-sudo mkdir /var/lib/cd_demo
+	sudo cp -R web /var/lib/cd_demo
+	sudo chown -R www-data /var/lib/cd_demo
+	sudo cp conf/cd_demo.conf /etc/apache2/conf-available
+	-sudo ln -s /etc/apache2/conf-available/cd_demo.conf /etc/apache2/conf-enabled/
+	sudo /etc/init.d/apache2 restart
