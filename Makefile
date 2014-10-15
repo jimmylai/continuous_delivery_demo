@@ -1,6 +1,7 @@
 setup:
 	sudo apt-get -y install make
-	sudo apt-get -y install git sudo apt-get -y install python-django
+	sudo apt-get -y install git
+	sudo apt-get -y install python-django
 	sudo apt-get -y install python-djangorestframework
 	sudo apt-get -y install python-requests
 	sudo apt-get -y install python-nose
