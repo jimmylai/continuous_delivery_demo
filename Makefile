@@ -8,6 +8,7 @@ setup:
 	sudo apt-get -y install pylint
 	sudo apt-get -y install python-markdown
 	sudo apt-get -y install python-coverage
+	sudo apt-get -y install apache2
 
 setup_jenkins:
 	wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
