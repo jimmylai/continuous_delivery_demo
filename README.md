@@ -1,4 +1,4 @@
-continuous_delivery_demo
+Continuous Delivery Demo
 ========================
 
 Demo code for Continuous Delivery sharing
